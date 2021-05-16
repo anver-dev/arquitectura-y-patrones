@@ -80,11 +80,8 @@ public class ManejadorImpl implements Manejador {
 	 * @param o observador a quitar
 	 * @return true si se elimina, false si no.
 	 */
-	public boolean quitaObservador(Observador o) {
-		boolean resultadoQuitarObservador = listaObservadores.remove(o);
-		if (listaObservadores.isEmpty())
-			finaliza();
-		return resultadoQuitarObservador;
+	public boolean quitaObservador(Observador o) {		
+		return listaObservadores.remove(o);
 	}
 
 	/**
@@ -98,9 +95,12 @@ public class ManejadorImpl implements Manejador {
 
 	/**
 	 * Se encarga de finalizar el programa
+	 * @return 
 	 *
 	 */
-	public void finaliza() {
-		System.exit(0);
+	public boolean finaliza() {
+		if(listaObservadores.isEmpty())
+			System.exit(0);
+		return false;
 	}
 }

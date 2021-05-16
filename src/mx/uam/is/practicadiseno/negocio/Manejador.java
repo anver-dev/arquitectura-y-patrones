@@ -44,6 +44,6 @@ public interface Manejador {
 	/**
 	 * Finaliza el programa
 	 */
-	public void finaliza();
+	public boolean finaliza();
 
 }
