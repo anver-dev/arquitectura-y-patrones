@@ -80,7 +80,7 @@ public class ManejadorProxy implements Manejador {
 	 */
 	@Override
 	public boolean finaliza() {
-		System.out.println("Una ventana finalizo");
+		System.out.println("Se invoco el metodo finaliza()");
 		return this.manejador.finaliza();
 	}
 
