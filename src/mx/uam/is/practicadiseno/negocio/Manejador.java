@@ -40,5 +40,10 @@ public interface Manejador {
 	 * @return true si se elimina, false si no.
 	 */
 	public boolean quitaObservador(Observador o);
+	
+	/**
+	 * Finaliza el programa
+	 */
+	public void finaliza();
 
 }
