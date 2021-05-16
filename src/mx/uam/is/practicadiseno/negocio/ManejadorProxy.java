@@ -73,5 +73,15 @@ public class ManejadorProxy implements Manejador {
 		System.out.println("Se invoco el metodo quitaObservador()");
 		return this.manejador.quitaObservador(o);
 	}
+	
+	/**
+	 * Finaliza una ventana, si no hay ventanas finaliza el programa
+	 * @return alse si aun hay observadores
+	 */
+	@Override
+	public boolean finaliza() {
+		System.out.println("El programa finalizo");
+		return this.manejador.finaliza();
+	}
 
 }
