@@ -67,6 +67,7 @@ public class Ventana extends JFrame implements Observador {
 			public void windowClosing(java.awt.event.WindowEvent e) {
 				// Quitamos el observador cuando la ventana se cierra
 				manejador.quitaObservador(ventana);
+				manejador.finaliza();
 			}
 		});
 	}
