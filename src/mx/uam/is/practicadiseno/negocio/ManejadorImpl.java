@@ -100,7 +100,7 @@ public class ManejadorImpl implements Manejador {
 	 * Se encarga de finalizar el programa
 	 *
 	 */
-	private void finaliza() {
+	public void finaliza() {
 		System.exit(0);
 	}
 }
