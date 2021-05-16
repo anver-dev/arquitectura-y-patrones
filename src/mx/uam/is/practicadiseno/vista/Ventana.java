@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import mx.uam.is.practicadiseno.negocio.Manejador;
+import mx.uam.is.practicadiseno.negocio.ManejadorProxy;
 import mx.uam.is.practicadiseno.negocio.Observador;
 
 public class Ventana extends JFrame implements Observador {
@@ -30,26 +30,26 @@ public class Ventana extends JFrame implements Observador {
 	private JButton jButtonBorrar = null;
 
 	// Referencia al programa
-	private Manejador manejador;
+	private ManejadorProxy manejadorProxy;
 
 	/**
 	 * This is the default constructor
 	 */
-	public Ventana(Manejador manejador) {
+	public Ventana(ManejadorProxy manejadorProxy) {
 		super();
 		initialize(this);
 		// Guarda la referencia al programa
-		this.manejador = manejador;
+		this.manejadorProxy = manejadorProxy;
 
 		// Agrega la ventana como observador
-		manejador.agregaObservador(this);
-		actualiza();
+		manejadorProxy.agregaObservador(this);
+		//actualiza();
 
 	}
 
 	@SuppressWarnings("unchecked")
 	public void actualiza() {
-		getJList().setListData(manejador.dameDatos());
+		getJList().setListData(manejadorProxy.dameDatos());
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Ventana extends JFrame implements Observador {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent e) {
 				// Quitamos el observador cuando la ventana se cierra
-				manejador.quitaObservador(ventana);
+				manejadorProxy.quitaObservador(ventana);
 			}
 		});
 	}
@@ -128,7 +128,7 @@ public class Ventana extends JFrame implements Observador {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					// Este codigo se invoca cuando se presiona agregar
 					@SuppressWarnings("unused")
-					boolean retorno = manejador.agrega(getJTextField().getText());
+					boolean retorno = manejadorProxy.agrega(getJTextField().getText());
 					// Actualiza la lista
 					actualiza();
 					// Borra el contenido del campo de texto
@@ -154,8 +154,7 @@ public class Ventana extends JFrame implements Observador {
 			jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					// Este codigo se invoca cuando se presiona agregar
-					manejador.agrega(getJTextField().getText());
-					actualiza();
+					manejadorProxy.agrega(getJTextField().getText());
 					getJTextField().setText("");
 				}
 			});
@@ -178,8 +177,7 @@ public class Ventana extends JFrame implements Observador {
 					// Este codigo se invoca cuando se presiona borrar
 					if (getJList().getSelectedValue() != null) {
 						String seleccionado = getJList().getSelectedValue().toString();
-						manejador.borra(seleccionado);
-						actualiza();
+						manejadorProxy.borra(seleccionado);
 					}
 				}
 			});
