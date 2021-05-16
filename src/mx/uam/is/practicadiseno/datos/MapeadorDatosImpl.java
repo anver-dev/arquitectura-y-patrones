@@ -12,9 +12,9 @@ public class MapeadorDatosImpl implements MapeadorDatos {
 	 * Constructor donde se agregan datos iniciales.
 	 */
 	public MapeadorDatosImpl() {
-		datos.add("Entrada 1");
-		datos.add("Entrada 2");
-		datos.add("Entrada 3");
+		agrega("Entrada 1");
+		agrega("Entrada 2");
+		agrega("Entrada 3");
 	}
 
 	/**
