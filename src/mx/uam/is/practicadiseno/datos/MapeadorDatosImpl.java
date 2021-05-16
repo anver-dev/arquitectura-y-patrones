@@ -1,5 +1,9 @@
 package mx.uam.is.practicadiseno.datos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +16,9 @@ public class MapeadorDatosImpl implements MapeadorDatos {
 	 * Constructor donde se agregan datos iniciales.
 	 */
 	public MapeadorDatosImpl() {
-		datos.add("Entrada 1");
-		datos.add("Entrada 2");
-		datos.add("Entrada 3");
+		agrega("Entrada 1");
+		agrega("Entrada 2");
+		agrega("Entrada 3");
 	}
 
 	/**
@@ -26,6 +30,7 @@ public class MapeadorDatosImpl implements MapeadorDatos {
 	public boolean agrega(String dato) {
 		if (!dato.equals("") && !datos.contains(dato)) {
 			datos.add(dato);
+			guardaDatosArchivo(datos);
 			return true;
 		}
 		return false;
@@ -38,7 +43,9 @@ public class MapeadorDatosImpl implements MapeadorDatos {
 	 * @return true si el dato es eliminado false si no
 	 */
 	public boolean borra(String dato) {
-		return datos.remove(dato);
+		boolean resultadoElimina = datos.remove(dato);
+		guardaDatosArchivo(datos);
+		return resultadoElimina;
 	}
 
 	/**
@@ -59,4 +66,40 @@ public class MapeadorDatosImpl implements MapeadorDatos {
 		return false;
 	}
 
+	/**
+	 * Guarda la lissta d edatos en un archivo
+	 * 
+	 * @param datos lista de datos a guardar
+	 */
+	private void guardaDatosArchivo(List<String> datos) {
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		try {
+			String ruta = "archivoEjemplo.txt";
+			File file = new File(ruta);
+
+			// Si el archivo no existe es creado
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+
+			for (String dato : datos) {
+				bw.write(dato + "\n");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { 
+			try {
+				if (bw != null) {
+					bw.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
