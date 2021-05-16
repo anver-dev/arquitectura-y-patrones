@@ -69,7 +69,6 @@ public class ManejadorImpl implements Manejador {
 		if (o != null && !listaObservadores.contains(o)) {
 			listaObservadores.add(o);
 			notifica();
-			System.out.println("observador:" + o);
 			return true;
 		}
 		return false;
@@ -93,7 +92,6 @@ public class ManejadorImpl implements Manejador {
 	 */
 	private void notifica() {
 		for (Observador observador : listaObservadores) {
-			System.out.println(observador);
 			observador.actualiza();
 		}
 	}

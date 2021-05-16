@@ -129,8 +129,6 @@ public class Ventana extends JFrame implements Observador {
 					// Este codigo se invoca cuando se presiona agregar
 					@SuppressWarnings("unused")
 					boolean retorno = manejador.agrega(getJTextField().getText());
-					// Actualiza la lista
-					actualiza();
 					// Borra el contenido del campo de texto
 					getJTextField().setText("");
 					// Pone texto de estatus
@@ -155,7 +153,6 @@ public class Ventana extends JFrame implements Observador {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					// Este codigo se invoca cuando se presiona agregar
 					manejador.agrega(getJTextField().getText());
-					actualiza();
 					getJTextField().setText("");
 				}
 			});
@@ -179,7 +176,6 @@ public class Ventana extends JFrame implements Observador {
 					if (getJList().getSelectedValue() != null) {
 						String seleccionado = getJList().getSelectedValue().toString();
 						manejador.borra(seleccionado);
-						actualiza();
 					}
 				}
 			});
